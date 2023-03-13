@@ -11,6 +11,15 @@ rl.on('line', function (line) {
   input.push(line)
 })
 .on('close', function () {
-  console.log(input);
+  let thisNum = input[0].split(' ');
+  let number = thisNum[0];
+  let cutNum = thisNum[1];
+
+  let scoreArr = input[1].split(' ').sort((a, b) => {
+    return b - a;
+  });
+
+  let answer = scoreArr[cutNum - 1];
+  console.log(answer);
   process.exit();
 });
