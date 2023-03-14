@@ -13,13 +13,17 @@ rl.on('line', function (line) {
   .on('close', function () {
     input.shift();
     input.sort((a, b) => {
-      if (a[0] > b[0]) return 1;
+      if (a[0] > b[0]) return -1;
       else if (a[0] == b[0]) {
-        if (a[1] > b[1]) return 1;
+        if (a[1] > b[1]) return -1;
       }
-      else return -1;
+      else return 1;
     })
 
-    console.log(input);
+    let answer = '';
+    input.reverse().forEach(ele =>{
+      answer += ele[0] + ' ' + ele[1] + '\n';
+    })
+    console.log(answer);
   process.exit();
 });
