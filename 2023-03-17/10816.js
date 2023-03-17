@@ -28,7 +28,6 @@ rl.on('line', function (line) {
       else answer.push(0);
     })
 
-    console.log(map, candi, answer);
     console.log(answer.join(' '));
 
   process.exit();
