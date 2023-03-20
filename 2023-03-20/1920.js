@@ -5,10 +5,12 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.on('line', function(line) {
-  console.log(line);
+let input = [];
 
-  rl.close();
-}).on("close", function() {
+rl.on('line', function (line) {
+  input.push(line)
+})
+.on('close', function () {
+  console.log(input);
   process.exit();
 });
