@@ -1,38 +1,34 @@
 const readline = require('readline');
 
 const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+	input: process.stdin,
+	output: process.stdout,
 });
 
 let input = [];
 
 rl.on('line', function (line) {
-  input.push(line)
-})
-  .on('close', function () {
-    let index = +input[0];
-    input.shift();
+	input.push(line);
+}).on('close', function () {
+	const limit = input.shift();
+	let answer = [];
+	let stack = [];
+	let stackNum = 1;
 
-    let arr = Array.from({ length: index }, (v, k) => k);
-    let test = [];
-    let answer = '';
-    let idx = 0;
-    input.forEach((num) => {
-      if (test.includes(num)) {
-        let i = test.indexOf(num);
-        for (let j = test.length; j > i; j--) {
-          test.pop();
-          answer += '-\n';
-        }
-      }
-      else {
-        for (let i = idx + 1; i <= num; i++) {
-          test.push(arr[i]);
-          answer += '+\n';
-        }
-        idx = num;
-      }
-    })
-  process.exit();
+  for (let i = 0; i < limit; i++) {
+		let num = parseInt(input[i]);
+    while (stackNum <= num) {
+			stack.push(stackNum);
+			stackNum++;
+			answer.push('+');
+    }
+		let stackPop = stack.pop();
+		answer.push('-');
+		if (stackPop !== num) {
+			answer = ['NO'];
+			break;
+		}
+	}
+  console.log(answer.join('\n'));
+	process.exit();
 });
